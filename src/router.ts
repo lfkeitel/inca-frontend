@@ -5,6 +5,7 @@ import Home from '@/views/Home.vue';
 import Archive from '@/views/Archive.vue';
 import DeviceList from '@/views/DeviceList.vue';
 import DeviceTypes from '@/views/DeviceTypes.vue';
+import SingleDevice from '@/views/SingleDevice.vue';
 
 Vue.use(Router);
 
@@ -32,5 +33,10 @@ export default new Router({
       name: 'DeviceTypes',
       component: DeviceTypes,
     },
+    {
+      path: '/view/:path',
+      name: 'SingleDevice',
+      component: SingleDevice,
+    }
   ],
 });

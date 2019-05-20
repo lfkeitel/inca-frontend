@@ -1,14 +1,10 @@
 <template>
   <div>
-    <nav-bar/>
-    <div class="container">
-      <status-progress-bar/>
-      <div class="row clearfix top-buffer">
-        <run-device-block/>
-        <application-logs/>
-      </div>
+    <status-progress-bar :active="isRunning"/>
+    <div class="row clearfix top-buffer">
+      <run-device-block/>
+      <application-logs/>
     </div>
-    <app-footer/>
   </div>
 </template>
 
@@ -25,5 +21,13 @@ import ApplicationLogs from '@/components/ApplicationLogs.vue';
     ApplicationLogs,
   },
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  get isRunning() {
+    return this.$store.state.running;
+  }
+
+  created() {
+    this.$store.dispatch('getDeviceList');
+  }
+}
 </script>

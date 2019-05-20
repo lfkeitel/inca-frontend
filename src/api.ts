@@ -64,6 +64,11 @@ export function getErrorLog(callback: (data: ErrorLine[]) => void) {
     .done((data: ErrorLine[]) => callback(data));
 }
 
+export function getConfig(path: string, callback: (data: string) => void) {
+  $.get(`/api/config/${path}`, {}, null)
+    .done((data: string) => callback(data));
+}
+
 export function runSingleDeviceGrab(
   address: string,
   brand: string,

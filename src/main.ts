@@ -11,6 +11,8 @@ Vue.config.productionTip = false;
 Vue.component('NavBar', NavBar);
 Vue.component('AppFooter', AppFooter);
 
+store.dispatch('getDeviceList');
+
 new Vue({
   router,
   store,

@@ -1,28 +1,33 @@
 <template>
   <div class="col-md-6 column">
     <h3>Application Log</h3>
-    <div id="appLogs">
-      <p v-for="log in logs" v-bind:key="log.time">{{log.etype}} - {{log.time}} - {{log.message}}</p>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <td>Type</td>
+          <td>Time</td>
+          <td>Message</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="log in logs" v-bind:key="log.time" class="${log.etype.toLowerCase()}">
+          <td class="${log.etype.toLowerCase()}">{{log.etype}}</td>
+          <td>{{log.time}}</td>
+          <td>{{log.message}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import * as api from '@/api';
+import { mapState } from 'vuex';
 
-@Component({})
+@Component
 export default class ApplicationLogs extends Vue {
-  private logs: api.ErrorLine[] = [];
-
-  public created() {
-    api.getErrorLog(logs => {
-      this.setData(logs);
-    });
-  }
-
-  private setData(logs: api.ErrorLine[]) {
-    this.logs = logs;
+  get logs() {
+    return this.$store.state.logs;
   }
 }
 </script>

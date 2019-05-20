@@ -7,18 +7,45 @@
       </h3>
       <div class="progress">
         <div
+          :class="classList"
+          :style="{ width: width+'%' }"
+          :aria-valuenow="current"
+          :aria-valuemax="max"
+          class="progress-bar"
           id="statusProgressBar"
-          class="progress-bar progress-bar-success progress-bar-striped active"
           role="progressbar"
-          aria-valuenow="0"
           aria-valuemin="0"
-          aria-valuemax="1"
         ></div>
       </div>
       <button type="button" class="btn btn-default" id="startArchiveBtn">Start Archive Job</button>
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator';
+
+@Component
+export default class StatusProgressBar extends Vue {
+  @Prop({ default: 1 }) private readonly max!: number;
+  @Prop({ default: 1 }) private readonly current!: number;
+  @Prop({ default: false }) private readonly active!: boolean;
+
+  get width() {
+    return (this.current / this.max) * 100;
+  }
+
+  get classList() {
+    return {
+      active: this.active,
+      'progress-bar-striped': this.active,
+      'progress-bar-danger': this.active,
+      'progress-bar-success': !this.active,
+    };
+  }
+}
+</script>
+
 
 <style scoped>
 .idle-status {
