@@ -13,17 +13,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import StatusProgressBar from "@/components/StatusProgressBar.vue";
-import RunDeviceBlock from "@/components/RunDeviceBlock.vue";
-import ApplicationLogs from "@/components/ApplicationLogs.vue";
+import { Component, Vue } from 'vue-property-decorator';
+import StatusProgressBar from '@/components/StatusProgressBar.vue';
+import RunDeviceBlock from '@/components/RunDeviceBlock.vue';
+import ApplicationLogs from '@/components/ApplicationLogs.vue';
 
 @Component({
   components: {
     StatusProgressBar,
     RunDeviceBlock,
-    ApplicationLogs
-  }
+    ApplicationLogs,
+  },
 })
 export default class Home extends Vue {}
 </script>

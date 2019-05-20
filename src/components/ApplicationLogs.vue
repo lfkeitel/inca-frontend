@@ -8,21 +8,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import * as api from "@/api";
+import { Component, Vue } from 'vue-property-decorator';
+import * as api from '@/api';
 
 @Component({})
 export default class ApplicationLogs extends Vue {
-  logs = [];
+  private logs: api.ErrorLine[] = [];
 
-  created() {
+  public created() {
     api.getErrorLog(logs => {
       this.setData(logs);
     });
   }
 
-  setData(logs) {
-    console.dir(logs);
+  private setData(logs: api.ErrorLine[]) {
     this.logs = logs;
   }
 }

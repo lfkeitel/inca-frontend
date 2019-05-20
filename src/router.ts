@@ -32,5 +32,5 @@ export default new Router({
       name: 'DeviceTypes',
       component: DeviceTypes,
     },
-  ]
+  ],
 });
