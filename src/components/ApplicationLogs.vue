@@ -29,6 +29,10 @@ export default class ApplicationLogs extends Vue {
   get logs() {
     return this.$store.state.logs;
   }
+
+  created() {
+    this.$store.dispatch('getAppLogs');
+  }
 }
 </script>
 

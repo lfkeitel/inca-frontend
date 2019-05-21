@@ -12,6 +12,7 @@ Vue.component('NavBar', NavBar);
 Vue.component('AppFooter', AppFooter);
 
 store.dispatch('getDeviceList');
+store.dispatch('getStatus');
 
 new Vue({
   router,

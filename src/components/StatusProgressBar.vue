@@ -3,7 +3,7 @@
     <div class="col-md-12 column">
       <h3>
         Current Status:
-        <span id="currentStatus" class="idle-status">Idle</span>
+        <span class="idle-status">{{statusMsg}}</span>
       </h3>
       <div class="progress">
         <div
@@ -17,7 +17,6 @@
           aria-valuemin="0"
         ></div>
       </div>
-      <button type="button" class="btn btn-default" id="startArchiveBtn">Start Archive Job</button>
     </div>
   </div>
 </template>
@@ -30,6 +29,7 @@ export default class StatusProgressBar extends Vue {
   @Prop({ default: 1 }) private readonly max!: number;
   @Prop({ default: 1 }) private readonly current!: number;
   @Prop({ default: false }) private readonly active!: boolean;
+  @Prop({ default: 'Idle' }) private readonly statusMsg!: string;
 
   get width() {
     return (this.current / this.max) * 100;

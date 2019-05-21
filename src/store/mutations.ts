@@ -2,11 +2,8 @@ import State from './types';
 import * as api from '@/api';
 
 export default {
-    startGrab(state: State) {
-        state.running = true;
-    },
-    stopGrab(state: State) {
-        state.running = false;
+    status(state: State, status: api.Status) {
+        state.status = status;
     },
 
     deviceList(state: State, devices: api.Device[]) {

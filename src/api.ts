@@ -1,6 +1,6 @@
 import * as $ from 'jquery';
 
-export interface IStatusResult {
+export interface Status {
   running: boolean;
   totalDevices: number;
   finished: number;
@@ -44,9 +44,9 @@ export interface ISaveConfigResult {
   error?: string;
 }
 
-export function checkStatus(callback: (data: IStatusResult) => void) {
+export function checkStatus(callback: (data: Status) => void) {
   $.get('/api/status', {}, null, 'json')
-    .done((data: IStatusResult) => callback(data));
+    .done((data: Status) => callback(data));
 }
 
 export function performRun(callback: (data: IPerformRunResult) => void) {
@@ -65,8 +65,13 @@ export function getErrorLog(callback: (data: ErrorLine[]) => void) {
 }
 
 export function getConfig(path: string, callback: (data: string) => void) {
-  $.get(`/api/config/${path}`, {}, null)
+  $.get(`/api/download/${path}`, {}, null)
     .done((data: string) => callback(data));
+}
+
+export function deleteConfig(path: string, callback: (data: ISaveConfigResult) => void) {
+  $.get(`/api/delete`, { path }, null)
+    .done((data: ISaveConfigResult) => callback(data));
 }
 
 export function runSingleDeviceGrab(
@@ -84,7 +89,17 @@ export function saveDeviceList(listText: string, callback: (data: ISaveConfigRes
     .done((data: ISaveConfigResult) => callback(data));
 }
 
+export function getDeviceListFile(callback: (data: string) => void) {
+  $.post('/api/getdevicelistfile', {}, null)
+    .done((data: string) => callback(data));
+}
+
 export function saveDeviceTypes(listText: string, callback: (data: ISaveConfigResult) => void) {
   $.post('/api/savedevicetypes', { text: encodeURIComponent(listText) }, null, 'json')
     .done((data: ISaveConfigResult) => callback(data));
+}
+
+export function getDeviceTypesFile(callback: (data: string) => void) {
+  $.post('/api/getdevicetypesfile', {}, null)
+    .done((data: string) => callback(data));
 }
