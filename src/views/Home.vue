@@ -6,7 +6,7 @@
       :max="status.totalDevices"
       :statusMsg="statusMsg"
     />
-    <button type="button" class="btn btn-default" @click="startFullRun">Start Archive Job</button>
+    <button type="button" class="btn btn-success" @click="startFullRun">Start Archive Job</button>
     <div class="row clearfix top-buffer">
       <run-device-block/>
       <application-logs/>

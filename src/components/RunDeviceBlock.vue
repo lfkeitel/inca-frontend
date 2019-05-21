@@ -18,7 +18,7 @@
         <label for="manProto">Protocol</label>
         <input type="email" class="form-control" id="manProto" v-model="protocol">
       </div>
-      <button class="btn btn-default" type="button" @click="startArchive">Run</button>
+      <button class="btn btn-success" type="button" @click="startArchive">Run</button>
     </form>
   </div>
 </template>
