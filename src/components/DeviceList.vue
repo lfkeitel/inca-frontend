@@ -12,7 +12,7 @@
     </thead>
     <tr v-for="device in devices" v-bind:key="device.address">
       <td style="text-align: center;">
-        <button type="button" class="btn btn-default">
+        <button type="button" class="btn btn-default" @click="runDeviceArchive(device.address)">
           <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
         </button>
       </td>
@@ -34,6 +34,19 @@ import * as api from '@/api';
 @Component
 export default class Archive extends Vue {
   @Prop() private readonly devices!: api.Device[];
+
+  runDeviceArchive(address) {
+    const device = this.devices.find(d => d.address === address);
+    if (device) {
+      this.$store.dispatch('startArchiveManual', {
+        name: device.name,
+        address: device.address,
+        manufacturer: device.manufacturer,
+        protocol: device.proto,
+        callback: () => alert('Downloading new config. Check Status page.'),
+      });
+    }
+  }
 }
 </script>
 

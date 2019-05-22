@@ -5,6 +5,7 @@ interface ManualDevice {
     address: string;
     protocol: string;
     manufacturer: string;
+    callback?: (data: api.IPerformRunResult) => void;
 }
 
 export default {
@@ -34,7 +35,12 @@ export default {
             device.manufacturer,
             device.protocol,
             device.name,
-            statusCheck(commit, dispatch),
+            data => {
+                if (device.callback) {
+                    device.callback(data);
+                }
+                statusCheck(commit, dispatch)();
+            },
         );
     },
 };
