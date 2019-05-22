@@ -37,6 +37,6 @@ export default new Router({
       path: '/view/:path',
       name: 'SingleDevice',
       component: SingleDevice,
-    }
+    },
   ],
 });

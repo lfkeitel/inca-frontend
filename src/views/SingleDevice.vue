@@ -1,9 +1,11 @@
 <template>
   <div>
     <div v-if="device !== null">
-      <h2>Latest Configuration For {{device.name}} ({{device.address}} | {{device.manufacturer}}):</h2>
+      <h2>Latest Configuration For {{device.name}} ({{device.address}})</h2>
       <h4>
-        Filename: {{device.path}}
+        <strong>Filename:</strong>
+        {{device.path}}
+        <br>
         <a @click="downloadConf" style="cursor: pointer;">
           Download File
           <span
@@ -12,7 +14,7 @@
             aria-hidden="true"
           ></span>
         </a>
-        &nbsp;&nbsp;&nbsp;&nbsp;
+
         <a @click="deleteConf" style="cursor: pointer;">
           Delete File
           <span
@@ -25,6 +27,13 @@
 
       <pre class="configText">{{confText}}</pre>
     </div>
+    <div v-else-if="!isDeleted">
+      <h3>Loading Configuration...</h3>
+    </div>
+
+    <div v-if="isDeleted">
+      <h3>This device does not exist.</h3>
+    </div>
   </div>
 </template>
 
@@ -35,12 +44,18 @@ import { download } from '@/utils';
 
 @Component
 export default class SingleDevice extends Vue {
+  deviceLoadTimeout: number = 0;
+  isDeleted: boolean = false;
+
   get device(): api.Device | null {
     const res: api.Device | null = this.$store.getters.deviceByPath(
       this.$route.params.path
     );
     if (res !== null) {
       this.$store.dispatch('getConfig', res.path);
+      clearTimeout(this.deviceLoadTimeout);
+    } else {
+      this.deviceLoadTimeout = setTimeout(() => (this.isDeleted = true), 2000);
     }
     return res;
   }
@@ -56,17 +71,17 @@ export default class SingleDevice extends Vue {
   }
 
   deleteConf() {
-    if (this.device === null) return;
+    if (this.device !== null) {
+      api.deleteConfig(this.device.path, resp => {
+        if (!resp.success) {
+          alert(resp.error);
+          return;
+        }
 
-    api.deleteConfig(this.device.path, resp => {
-      if (!resp.success) {
-        alert(resp.error);
-        return;
-      }
-
-      this.$store.dispatch('getDeviceList');
-      this.$router.replace('/archive');
-    });
+        this.$store.dispatch('getDeviceList');
+        this.$router.replace('/archive');
+      });
+    }
   }
 }
 </script>

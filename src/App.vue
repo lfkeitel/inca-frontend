@@ -8,6 +8,20 @@
   </div>
 </template>
 
+<script lang="ts">
+import Vue from 'vue';
+import NavBar from '@/components/NavBar.vue';
+import AppFooter from '@/components/AppFooter.vue';
+
+export default Vue.extend({
+  components: {
+    NavBar,
+    AppFooter,
+  },
+});
+</script>
+
+
 <style lang="less">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

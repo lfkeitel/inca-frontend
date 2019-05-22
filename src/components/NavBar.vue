@@ -13,13 +13,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <router-link class="navbar-brand" to="/">Infrastructure Config Archive</router-link>
+        <router-link class="navbar-brand" to="/">Inca</router-link>
       </div>
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li>
-            <router-link to="/">Status</router-link>
+            <router-link to="/">Dashboard</router-link>
           </li>
           <li>
             <router-link to="/archive">Archive</router-link>
@@ -42,3 +42,10 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class NavBar extends Vue {}
 </script>
+
+<style>
+.navbar-brand {
+  font-size: 20px;
+  font-weight: bold;
+}
+</style>

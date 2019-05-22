@@ -2,8 +2,8 @@
   <div class="row clearfix">
     <div class="col-md-12 column">
       <h3>
-        Current Status:
-        <span class="idle-status">{{statusMsg}}</span>
+        Status:
+        <span :class="active ? 'running-status' : 'idle-status'">{{statusMsg}}</span>
       </h3>
       <div class="progress">
         <div
@@ -50,9 +50,11 @@ export default class StatusProgressBar extends Vue {
 <style scoped>
 .idle-status {
   color: black;
+  font-weight: bold;
 }
 
 .running-status {
   color: green;
+  font-weight: bold;
 }
 </style>
