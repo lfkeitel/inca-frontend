@@ -17,8 +17,8 @@ export default {
         api.getErrorLog(data => commit('errorlog', data));
     },
 
-    getConfig({ commit }, path: string) {
-        api.getConfig(path, data => commit('conftext', data));
+    getConfig({ commit }, { device, path }) {
+        api.getConfig(`${device.name}-${device.address}/${path}`, data => commit('conftext', data));
     },
 
     getStatus({ commit }) {

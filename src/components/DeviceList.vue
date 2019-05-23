@@ -7,7 +7,6 @@
         <td>Name</td>
         <td>Protocol</td>
         <td>Manufacturer</td>
-        <td>View Config</td>
       </tr>
     </thead>
     <tr v-for="device in devices" v-bind:key="device.address">
@@ -17,12 +16,11 @@
         </button>
       </td>
       <td>{{device.address}}</td>
-      <td>{{device.name}}</td>
+      <td>
+        <router-link :to="'/view/' + encodeURI(device.path)">{{device.name}}</router-link>
+      </td>
       <td>{{device.proto}}</td>
       <td>{{device.manufacturer}}</td>
-      <td>
-        <router-link :to="'/view/' + encodeURI(device.path)">{{device.path}}</router-link>
-      </td>
     </tr>
   </table>
 </template>
@@ -51,6 +49,11 @@ export default class Archive extends Vue {
 </script>
 
 <style scoped>
+table {
+  margin: 0 auto;
+  width: 90%;
+}
+
 thead {
   font-weight: bold;
 }

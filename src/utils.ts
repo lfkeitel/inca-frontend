@@ -1,5 +1,7 @@
 export function stage_to_user_string(stage: string): string {
     switch (stage) {
+        case 'cleanup':
+            return 'Clean up';
         case 'grabbing':
             return 'Grabbing';
         case 'loading-configuration':

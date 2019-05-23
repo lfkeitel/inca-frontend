@@ -13,6 +13,7 @@ export enum Stage {
   LoadingConfig = 'loading-configuration',
   Grabbing = 'grabbing',
   PostScript = 'post-script',
+  CleanUp = 'cleanup',
 }
 
 export interface IPerformRunResult {
@@ -29,7 +30,7 @@ export interface Device {
   name: string;
   address: string;
   proto: string;
-  conf_text: string;
+  configs: string[];
   manufacturer: string;
 }
 
@@ -65,6 +66,7 @@ export function getErrorLog(callback: (data: ErrorLine[]) => void) {
 }
 
 export function getConfig(path: string, callback: (data: string) => void) {
+  console.log(path);
   $.get(`/api/download/${path}`, {}, null)
     .done((data: string) => callback(data));
 }
