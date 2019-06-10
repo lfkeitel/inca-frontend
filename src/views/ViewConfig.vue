@@ -1,7 +1,11 @@
 <template>
   <div>
     <div v-if="device !== undefined">
-      <h2>Latest Configuration For {{device.name}} ({{device.address}})</h2>
+      <h2>
+        Latest Configuration For
+        <router-link :to="'/view/' + encodeURI(device.path)">{{device.name}}</router-link>
+        ({{device.address}})
+      </h2>
       <h4>
         <strong>Filename:</strong>
         {{device.path}}
