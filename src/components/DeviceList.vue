@@ -5,22 +5,40 @@
         <td>New Config</td>
         <td>IP Address</td>
         <td>Name</td>
+        <td>Latest</td>
         <td>Protocol</td>
         <td>Manufacturer</td>
       </tr>
     </thead>
     <tr v-for="device in devices" v-bind:key="device.address">
       <td style="text-align: center;">
-        <button type="button" class="btn btn-default" @click="runDeviceArchive(device.address)">
+        <button
+          type="button"
+          class="btn btn-default"
+          @click="runDeviceArchive(device.address)"
+        >
           <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
         </button>
       </td>
-      <td>{{device.address}}</td>
+      <td>{{ device.address }}</td>
       <td>
-        <router-link :to="'/view/' + encodeURI(device.path)">{{device.name}}</router-link>
+        <router-link :to="'/view/' + encodeURI(device.path)">{{
+          device.name
+        }}</router-link>
       </td>
-      <td>{{device.proto}}</td>
-      <td>{{device.manufacturer}}</td>
+      <td>
+        <router-link
+          :to="
+            '/view/' +
+              encodeURI(device.path) +
+              '/' +
+              device.configs[device.configs.length - 1]
+          "
+          >Latest</router-link
+        >
+      </td>
+      <td>{{ device.proto }}</td>
+      <td>{{ device.manufacturer }}</td>
     </tr>
   </table>
 </template>
