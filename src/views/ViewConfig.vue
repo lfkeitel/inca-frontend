@@ -54,7 +54,7 @@ export default class SingleDevice extends Vue {
 
   get device(): api.Device | undefined {
     const res: api.Device | undefined = this.$store.state.devices.find(
-      d => `${d.name}-${d.address}` === this.$route.params.device
+      d => `${d.name}-${d.address}` === this.$route.params.device,
     );
     if (res !== undefined && !this.dispatched) {
       this.$store.dispatch('getConfig', {
@@ -92,7 +92,7 @@ export default class SingleDevice extends Vue {
 
           this.$store.dispatch('getDeviceList');
           this.$router.replace('/archive');
-        }
+        },
       );
     }
   }

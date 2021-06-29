@@ -48,7 +48,7 @@ export default class Archive extends Vue {
     this.searchResults = this.$store.state.devices.filter(
       device =>
         device.address.includes(query) ||
-        device.name.toLowerCase().includes(query)
+        device.name.toLowerCase().includes(query),
     );
     this.showSearchResults = true;
   }

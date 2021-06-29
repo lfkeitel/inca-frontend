@@ -73,7 +73,7 @@ export default class SingleDevice extends Vue {
 
   get device(): api.Device | undefined {
     const res: api.Device | undefined = this.$store.state.devices.find(
-      d => `${d.name}-${d.address}` === this.$route.params.device
+      d => `${d.name}-${d.address}` === this.$route.params.device,
     );
     if (res !== undefined) {
       clearTimeout(this.deviceLoadTimeout);

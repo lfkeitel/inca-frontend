@@ -37,7 +37,7 @@ export default class StatusProgressBar extends Vue {
 
   get classList() {
     return {
-      active: this.active,
+      'active': this.active,
       'progress-bar-striped': this.active,
       'progress-bar-danger': this.active,
       'progress-bar-success': !this.active,

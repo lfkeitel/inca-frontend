@@ -66,7 +66,6 @@ export function getErrorLog(callback: (data: ErrorLine[]) => void) {
 }
 
 export function getConfig(path: string, callback: (data: string) => void) {
-  console.log(path);
   $.get(`/api/download/${path}`, {}, null)
     .done((data: string) => callback(data));
 }
