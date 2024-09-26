@@ -6,20 +6,12 @@
       <input
         type="text"
         id="searchAddress"
-        placeholder="Search"
+        placeholder="Filter"
         v-model="searchQuery"
-        v-on:keydown.enter.prevent="search"
-      >&nbsp;&nbsp;
-      <button type="button" class="btn btn-default" @click="search">Search</button>
-    </form>
+        @keyup="search"
+      >
+    </form><br><br>
 
-    <br>
-    <span id="searchResults" v-if="showSearchResults">
-      <device-list :devices="searchResults"/>
-    </span>
-    <br>
-
-    <h4>Device List:</h4>
     <device-list :devices="devices"/>
   </div>
 </template>
@@ -35,11 +27,13 @@ import * as api from '@/api';
   },
 })
 export default class Archive extends Vue {
-  showSearchResults = false;
   searchQuery = '';
   searchResults: api.Device[] = [];
 
   get devices() {
+    if (this.searchResults.length > 0) {
+      return this.searchResults;
+    }
     return this.$store.state.devices;
   }
 
@@ -50,7 +44,6 @@ export default class Archive extends Vue {
         device.address.includes(query) ||
         device.name.toLowerCase().includes(query),
     );
-    this.showSearchResults = true;
   }
 }
 </script>
