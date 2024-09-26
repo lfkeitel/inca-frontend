@@ -10,7 +10,7 @@
         <td>Manufacturer</td>
       </tr>
     </thead>
-    <tr v-for="device in devices" v-bind:key="device.address">
+    <tr v-for="device in devices" v-bind:key="device.address + '-' + device.name">
       <td style="text-align: center;">
         <button
           type="button"
