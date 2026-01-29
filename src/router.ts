@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import Home from '@/views/Home.vue';
+import RunDetails from '@/views/RunDetails.vue';
 import Archive from '@/views/Archive.vue';
 import DeviceList from '@/views/DeviceList.vue';
 import DeviceTypes from '@/views/DeviceTypes.vue';
@@ -18,6 +19,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
+    },
+    {
+      path: '/rundetails',
+      name: 'RunDetails',
+      component: RunDetails,
     },
     {
       path: '/archive',

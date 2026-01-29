@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import State from './types';
 import actions from './actions';
 import getters from './getters';
 import mutations from './mutations';
@@ -18,6 +17,7 @@ export default new Vuex.Store({
       totalDevices: 0,
       finished: 0,
       stage: api.Stage.Default,
+      devices: {},
     },
     devices: [],
     logs: [],
