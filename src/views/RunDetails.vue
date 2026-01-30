@@ -10,7 +10,7 @@
       Start Archive Job
     </button>
     <div class="row clearfix top-buffer">
-      <device-status :devices="devices" />
+      <device-status :status="status" />
       <application-logs />
     </div>
   </div>
@@ -34,10 +34,6 @@ import { stage_to_user_string } from '@/utils';
 export default class RunDetails extends Vue {
   get status() {
     return this.$store.state.status;
-  }
-
-  get devices() {
-    return this.$store.state.status.devices;
   }
 
   get statusMsg() {
