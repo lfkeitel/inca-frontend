@@ -102,6 +102,16 @@ export function deleteConfig(
   );
 }
 
+export function deleteDevice(
+  name: string,
+  address: string,
+  callback: (data: ISaveConfigResult) => void
+) {
+  $.get(`/api/delete-device`, { name, address }, null).done(
+    (data: ISaveConfigResult) => callback(data)
+  );
+}
+
 export function runSingleDeviceGrab(
   address: string,
   brand: string,
